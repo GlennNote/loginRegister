@@ -1,4 +1,4 @@
-import re
+import re, sys
 from flask import Flask, session, request, redirect, render_template, flash, url_for
 from db.data_layer import get_user_by_email, get_user_by_id, create_user
 
@@ -14,5 +14,23 @@ def index():
 @app.route('/authenticate')
 def authenticate():
     return render_template('authenticate.html')
+
+@app.route('/register', methods=['POST'])
+def register():
+    fullname = request.form['html_fullname']
+    email = request.form['html_email']
+    password = request.form['html_password']
+    confirm = request.form['html_confirm']
+    sys.stdout.flush()
+    print(email, fullname, password, confirm)
+    return redirect(url_for('index'))
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form['html_email']
+    password = request.form['html_password']
+    sys.stdout.flush()
+    print(email, password)
+    return redirect(url_for('index'))
 
 app.run(debug=True)
