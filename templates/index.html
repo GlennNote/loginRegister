@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<h1>You're not logged in.</h1>
-<a href="{{ url_for('authenticate') }}" class="btn btn-primary">Log in or Register</a>
+    {% if session.name %}
+    <h1>Hello {{session.name}}</h1>
+    <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+    {% else %}
+    <h1>You're not logged in.</h1>
+    <a href="{{ url_for('authenticate') }}" class="btn btn-primary">Log in or Register</a>
+    {% endif %}
 {% endblock %}

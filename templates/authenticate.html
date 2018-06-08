@@ -13,6 +13,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                 <form action="{{ url_for('login') }}" method="POST">
+                    <input type="hidden" name="csrf_token" value='{{csrf_token()}}'>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" name="html_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -26,6 +27,7 @@
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                 <form action="{{ url_for('register') }}" method="POST">
+                    <input type="hidden" name="csrf_token" value='{{csrf_token()}}'>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" name="html_email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -47,6 +49,7 @@
             </form>
         </div>
     </div>
+    {% include 'errors.html' %}
 </div>
 
 {% endblock %}
